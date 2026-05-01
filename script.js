@@ -36,8 +36,13 @@ async function start() {
       sepia(0.25)
     `;
 
-    ctx.drawImage(video, 0, 0);
-    ctx.filter = "none";
+   ctx.save();
+
+// 横反転
+ctx.scale(-1, 1);
+ctx.drawImage(video, -canvas.width, 0, canvas.width, canvas.height);
+
+ctx.restore();
 
     // スタンプ
     detections.forEach(det => {
